@@ -1,0 +1,28 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+
+logging:
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+  appenders:
+    - type: console
+      threshold: INFO
+    - type: file
+      threshold: INFO
+      currentLogFilename: /tmp/application.log
+      archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 2
+      maxFileSize: 10MiB
+
+exchangeRateAPIConfig:
+  url: "http://api.exchangeratesapi.io/v1/latest"
+  accessKey: "ce1d8bae1f4b651ca1c6136cd14e51da"
+  baseCurrency: "EUR"
+
+inMemoryCacheConfig:
+  delayPeriod: 86400 # In seconds. Current value is = 1 day
